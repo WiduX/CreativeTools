@@ -1,10 +1,8 @@
 package widux.creativetools;
 
 import java.io.File;
-
 import net.minecraft.block.Block;
 import widux.core.ConfigAssist;
-import widux.moreslabs2.ModInfo;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -33,9 +31,7 @@ public class CreativeTools
 	
 	public static ConfigAssist config;
 	
-	public static Block itemBlock;
-	public static Block liquidBlock;
-	public static Block energyBlock;
+	public static Block creativeBlock;
 	
 	@Instance(ModInfo.INTERNAL_NAME)
 	public static CreativeTools instance;
