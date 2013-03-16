@@ -8,6 +8,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
@@ -27,8 +28,24 @@ public class BlockCreative extends BlockContainer
 
 	public TileEntity createNewTileEntity(World world)
 	{
-		return new TileEntityCreative();
+		return new TileEntityCreative(false);
 	}
+	
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
+    {
+		int meta = world.getBlockMetadata(x, y, z);
+		switch(meta)
+		{
+		case 0:
+			player.openGui(CreativeTools.instance, 0, world, x, y, z);
+		case 1:
+			player.openGui(CreativeTools.instance, 1, world, x, y, z);
+		case 2:
+			player.openGui(CreativeTools.instance, 2, world, x, y, z);
+		default:
+			return false;
+		}
+    }
 	
 	@SideOnly(Side.CLIENT)
     public void func_94332_a(IconRegister iconRegister)
@@ -61,7 +78,7 @@ public class BlockCreative extends BlockContainer
 	
     public Icon getBlockTexture(IBlockAccess iba, int x, int y, int z, int blockSide)
     {
-    	int meta = iba.getBlockId(x, y, z);
+    	int meta = iba.getBlockMetadata(x, y, z);
     	return this.textures[meta][blockSide];
     }
 	

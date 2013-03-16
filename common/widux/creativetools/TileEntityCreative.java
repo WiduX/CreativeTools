@@ -10,4 +10,9 @@ public class TileEntityCreative extends TileEntity
 		
 	}
 	
+	public TileEntityCreative(boolean b)
+	{
+		
+	}
+	
 }

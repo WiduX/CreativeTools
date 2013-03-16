@@ -12,7 +12,8 @@ public class CommonProxy
 	
 	public void registerBlocks()
 	{
-		GameRegistry.registerBlock(CreativeTools.creativeBlock, "WiduX-CT-Block-CreativeBlock");
+		GameRegistry.registerBlock(CreativeTools.creativeBlock, ItemBlockCreative.class, "WiduX-CT-Block-CreativeBlock");
+		GameRegistry.registerTileEntity(TileEntityItemDuplicator.class, "WiduX-CT-TileEntity-ItemDuplicator");
 	}
 	
 	public void addNames()
