@@ -1,5 +1,6 @@
 package widux.creativetools;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -21,6 +22,7 @@ public class TileEntityLiquidDuplicator extends TileEntity implements IInventory
 	public TileEntityLiquidDuplicator()
 	{
 		outputTank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 10);
+		outputTank.fill(new LiquidStack(Block.lavaStill, 10000), true);
 	}
 	
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)

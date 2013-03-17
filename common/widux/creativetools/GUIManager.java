@@ -14,7 +14,7 @@ public class GUIManager implements IGuiHandler
 		case 0:
 			return new ContainerItemDuplicator(player.inventory, (TileEntityItemDuplicator) world.getBlockTileEntity(x, y, z));
 		case 1:
-			//return new ContainerLiquidDuplicator(player.inventory, (TileEntityLiquidDuplicator) world.getBlockTileEntity(x, y, z));
+			return new ContainerLiquidDuplicator(player.inventory, (TileEntityLiquidDuplicator) world.getBlockTileEntity(x, y, z));
 		case 2:
 			//return new ContainerEnergyDuplicator(player.inventory, (TileEntityEnergyDuplicator) world.getBlockTileEntity(x, y, z));
 		default:
@@ -29,7 +29,7 @@ public class GUIManager implements IGuiHandler
 		case 0:
 			return new GUIItemDuplicator(player.inventory, (TileEntityItemDuplicator) world.getBlockTileEntity(x, y, z));
 		case 1:
-		//	return new GUILiquidDuplicator(player.inventory, (TileEntityLiquidDuplicator) world.getBlockTileEntity(x, y, z));
+			return new GUILiquidDuplicator(player.inventory, (TileEntityLiquidDuplicator) world.getBlockTileEntity(x, y, z));
 		case 2:
 		//	return new GUIEnergyDuplicator(player.inventory, (TileEntityEnergyDuplicator) world.getBlockTileEntity(x, y, z));
 		default:

@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
 public class ItemBlockCreative extends ItemBlock
@@ -29,5 +30,19 @@ public class ItemBlockCreative extends ItemBlock
     {
         return meta;
     }
-	
+    
+	public String getItemDisplayName(ItemStack itemstack)
+	{
+		switch(itemstack.getItemDamage())
+		{
+		case 0:
+			return "Creative Item Provider";
+		case 1:
+			return "Creative Liquid Provider";
+		case 2:
+			return "Creative Energy Provider";
+		default:
+			return "";
+		}
+	}
 }

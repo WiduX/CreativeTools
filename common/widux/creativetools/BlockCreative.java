@@ -53,10 +53,13 @@ public class BlockCreative extends BlockContainer
 		{
 		case 0:
 			player.openGui(CreativeTools.instance, 0, world, x, y, z);
+			return true;
 		case 1:
 			player.openGui(CreativeTools.instance, 1, world, x, y, z);
+			return true;
 		case 2:
 			player.openGui(CreativeTools.instance, 2, world, x, y, z);
+			return true;
 		default:
 			return false;
 		}
