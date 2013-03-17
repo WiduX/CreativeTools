@@ -39,7 +39,7 @@ public class ContainerItemDuplicator extends Container
 
             if (slotID < 9)
             {
-                if (!this.mergeItemStack(itemInSlot, 9, 45, true))
+                if (!this.mergeItemStack(itemInSlot, 2, 38, true))
                 {
                     return null;
                 }
