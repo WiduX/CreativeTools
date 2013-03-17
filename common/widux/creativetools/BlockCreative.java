@@ -28,7 +28,22 @@ public class BlockCreative extends BlockContainer
 
 	public TileEntity createNewTileEntity(World world)
 	{
-		return new TileEntityCreative(false);
+		return null;
+	}
+	
+	public TileEntity createTileEntity(World world, int meta)
+	{
+		switch(meta)
+		{
+		case 0:
+			return new TileEntityItemDuplicator();
+		case 1:
+			return new TileEntityLiquidDuplicator();
+		//case 2:
+		//	return new TileEntityPowerDuplicator();
+		default:
+			return null;
+		}
 	}
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)

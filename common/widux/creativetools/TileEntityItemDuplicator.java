@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class TileEntityItemDuplicator extends TileEntityCreative implements ISidedInventory
+public class TileEntityItemDuplicator extends TileEntity implements ISidedInventory
 {
 	
 	private ItemStack[] items = new ItemStack[2];
