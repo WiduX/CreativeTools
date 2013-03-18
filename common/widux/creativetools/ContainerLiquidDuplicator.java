@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ContainerLiquidDuplicator extends Container
@@ -15,8 +16,8 @@ private TileEntityLiquidDuplicator teLiquid;
 	{
 		this.teLiquid = teLiquid;
 		
-		this.addSlotToContainer(new Slot(teLiquid, 0, 48, 35));
-		this.addSlotToContainer(new Slot(teLiquid, 1, 108, 35));
+		this.addSlotToContainer(new Slot(teLiquid, 0, 80, 35));
+		((Slot)this.inventorySlots.get(0)).setBackgroundIconIndex(Item.bucketEmpty.getIconFromDamage(0));
 		
 		addPlayerInventory(inventory);
 	}
@@ -24,6 +25,12 @@ private TileEntityLiquidDuplicator teLiquid;
     public boolean canInteractWith(EntityPlayer player)
     {
         return this.teLiquid.isUseableByPlayer(player);
+    }
+    
+    public void onCraftGuiClosed(EntityPlayer par1EntityPlayer)
+    {
+    	teLiquid.inventoryChanged(inventorySlots);
+    	System.out.println("Closed!");
     }
     
     @Override
@@ -37,14 +44,14 @@ private TileEntityLiquidDuplicator teLiquid;
             ItemStack itemInSlot = slot.getStack();
             item = itemInSlot.copy();
 
-            if (slotID < 9)
+            if (slotID < 1)
             {
-                if (!this.mergeItemStack(itemInSlot, 9, 45, true))
+                if (!this.mergeItemStack(itemInSlot, 1, 37, true))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(itemInSlot, 0, 9, false))
+            else if (!this.mergeItemStack(itemInSlot, 0, 1, false))
             {
                 return null;
             }
