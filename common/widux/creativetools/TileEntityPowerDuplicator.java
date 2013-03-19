@@ -6,9 +6,9 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityPowerDuplicator extends TileEntity
 {
 	
-	PowerMode currentMode = PowerMode.NONE;
-	int powerStrength; // Applies to: BC, IC, UE, RP
-	int packetSize; // Applies to: IC
+	private PowerMode currentMode = PowerMode.NONE;
+	private int powerStrength; // Applies to: BC, IC, UE, RP
+	private int packetSize; // Applies to: IC
 	
 	private static final String NBT_POWERMODE = "PowerModeValue";
 	private static final String NBT_STRENGTH = "PowerStrength";
@@ -33,6 +33,36 @@ public class TileEntityPowerDuplicator extends TileEntity
 		nbt.setInteger(NBT_POWERMODE, this.currentMode.toInt());
 		nbt.setInteger(NBT_STRENGTH, this.powerStrength);
 		nbt.setInteger(NBT_SIZE, this.packetSize);
+	}
+	
+	public void setPowerMode(PowerMode newMode)
+	{
+		this.currentMode = newMode;
+	}
+	
+	public void setPowerStrength(int newStrength)
+	{
+		this.powerStrength = newStrength;
+	}
+	
+	public void setPacketSize(int newSize)
+	{
+		this.packetSize = newSize;
+	}
+	
+	public PowerMode getPowerMode()
+	{
+		return this.currentMode;
+	}
+	
+	public int getPowerStrength()
+	{
+		return this.powerStrength;
+	}
+	
+	public int getPacketSize()
+	{
+		return this.packetSize;
 	}
 	
 }
