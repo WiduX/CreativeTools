@@ -1,5 +1,6 @@
 package widux.creativetools;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
@@ -63,6 +64,11 @@ public class TileEntityPowerDuplicator extends TileEntity
 	public int getPacketSize()
 	{
 		return this.packetSize;
+	}
+	
+	public boolean isUsableByPlayer(EntityPlayer player)
+	{
+		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
 	}
 	
 }
