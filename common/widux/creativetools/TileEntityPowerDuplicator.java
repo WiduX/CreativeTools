@@ -1,10 +1,11 @@
 package widux.creativetools;
 
+import buildcraft.api.power.IPowerProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityPowerDuplicator extends TileEntity
+public class TileEntityPowerDuplicator extends TileEntity// implements IPowerProvider
 {
 	
 	private PowerMode currentMode = PowerMode.NONE;

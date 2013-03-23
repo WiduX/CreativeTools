@@ -39,8 +39,8 @@ public class BlockCreative extends BlockContainer
 			return new TileEntityItemDuplicator();
 		case 1:
 			return new TileEntityLiquidDuplicator();
-		//case 2:
-		//	return new TileEntityPowerDuplicator();
+		case 2:
+			return new TileEntityPowerDuplicator();
 		default:
 			return null;
 		}
@@ -72,9 +72,9 @@ public class BlockCreative extends BlockContainer
 
         for (int meta = 0; meta < 3; meta++)
         {
-        	this.textures[meta][0] = iconRegister.func_94245_a(ModInfo.INTERNAL_NAME + ":" + getBlockNameFromMeta(meta) + "_bottom");
-        	this.textures[meta][1] = iconRegister.func_94245_a(ModInfo.INTERNAL_NAME + ":" + getBlockNameFromMeta(meta) + "_top");
-        	this.textures[meta][2] = iconRegister.func_94245_a(ModInfo.INTERNAL_NAME + ":" + getBlockNameFromMeta(meta) + "_side");
+        	this.textures[meta][0] = iconRegister.registerIcon(ModInfo.INTERNAL_NAME + ":" + getBlockNameFromMeta(meta) + "_bottom");
+        	this.textures[meta][1] = iconRegister.registerIcon(ModInfo.INTERNAL_NAME + ":" + getBlockNameFromMeta(meta) + "_top");
+        	this.textures[meta][2] = iconRegister.registerIcon(ModInfo.INTERNAL_NAME + ":" + getBlockNameFromMeta(meta) + "_side");
         	this.textures[meta][3] = this.textures[meta][2];
         	this.textures[meta][4] = this.textures[meta][2];
         	this.textures[meta][5] = this.textures[meta][2];
