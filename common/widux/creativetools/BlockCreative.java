@@ -48,11 +48,13 @@ public class BlockCreative extends BlockContainer
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
     {
+		
 		if(!player.capabilities.isCreativeMode)
 		{
 			player.sendChatToPlayer("You need to be in Creative Mode to use this block.");
 			return false;
 		}
+		
 		int meta = world.getBlockMetadata(x, y, z);
 		switch(meta)
 		{
