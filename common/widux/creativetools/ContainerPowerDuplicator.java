@@ -14,6 +14,11 @@ public class ContainerPowerDuplicator extends Container
 		this.tePower = tileEntity;
 	}
 	
+	public void setPowerStrength(int strength)
+	{
+		tePower.setPowerStrength(strength);
+	}
+	
 	public boolean canInteractWith(EntityPlayer player)
 	{
 		return this.tePower.isUsableByPlayer(player);

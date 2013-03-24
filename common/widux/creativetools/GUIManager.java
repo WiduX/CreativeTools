@@ -16,7 +16,7 @@ public class GUIManager implements IGuiHandler
 		case 1:
 			return new ContainerLiquidDuplicator(player.inventory, (TileEntityLiquidDuplicator) world.getBlockTileEntity(x, y, z));
 		case 2:
-		//	return new ContainerEnergyDuplicator(player.inventory, (TileEntityEnergyDuplicator) world.getBlockTileEntity(x, y, z));
+			//return new ContainerPowerDuplicator(player.inventory, (TileEntityPowerDuplicator) world.getBlockTileEntity(x, y, z));
 		default:
 			return null;
 		}

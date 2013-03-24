@@ -1,19 +1,28 @@
 package widux.creativetools;
 
+import java.util.Map.Entry;
+
 import buildcraft.api.core.SafeTimeTracker;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
+import buildcraft.api.power.PowerFramework;
+import buildcraft.api.transport.IPipeConnection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityPowerDuplicator extends TileEntity implements IPowerProvider
+public class TileEntityPowerDuplicator extends TileEntity implements IPowerProvider, IPipeConnection, IPowerReceptor
 {
 	
 	private PowerMode currentMode = PowerMode.NONE;
 	private int powerStrength; // Applies to: BC, IC, UE, RP
 	private int packetSize; // Applies to: IC
+	
+	private IPowerProvider provider;
 	
 	private static final String NBT_POWERMODE = "PowerModeValue";
 	private static final String NBT_STRENGTH = "PowerStrength";
@@ -21,7 +30,7 @@ public class TileEntityPowerDuplicator extends TileEntity implements IPowerProvi
 	
 	public TileEntityPowerDuplicator()
 	{
-		
+		provider = PowerFramework.currentFramework.createPowerProvider();
 	}
 	
 	public void readFromNBT(NBTTagCompound nbt)
@@ -76,80 +85,140 @@ public class TileEntityPowerDuplicator extends TileEntity implements IPowerProvi
 	}
 
 	
-	public int getLatency() {
-		//TODO DaFUQ!
+	public int getLatency()
+	{
 		return 0;
 	}
 
 	
-	public int getMinEnergyReceived() {
+	public int getMinEnergyReceived()
+	{
 		return 0;
 	}
 
 	
-	public int getMaxEnergyReceived() {
+	public int getMaxEnergyReceived()
+	{
 		return 0;
 	}
 
 	
-	public int getMaxEnergyStored() {
-		return Integer.MAX_VALUE;
+	public int getMaxEnergyStored()
+	{
+		return 10000;
 	}
 
 	
-	public int getActivationEnergy() {
-		//TODO Confirm.
+	public int getActivationEnergy()
+	{
 		return 0;
 	}
 
 	
-	public float getEnergyStored() {
-		//TODO Confirm.
+	public float getEnergyStored()
+	{
 		return this.powerStrength;
 	}
 
 	
-	public void configure(int latency, int minEnergyReceived,
-			int maxEnergyReceived, int minActivationEnergy, int maxStoredEnergy) {
-		//TODO Confirm.
+	public void configure(int latency, int minEnergyReceived, int maxEnergyReceived, int minActivationEnergy, int maxStoredEnergy)
+	{
 		
 	}
 
 	
-	public void configurePowerPerdition(int powerLoss, int powerLossRegularity) {
-		//TODO Confirm.
+	public void configurePowerPerdition(int powerLoss, int powerLossRegularity)
+	{
 		
 	}
 
 	
-	public boolean update(IPowerReceptor receptor) {
-		//TODO Confirm.
-		return false;
-	}
-
-	
-	public boolean preConditions(IPowerReceptor receptor) {
-		//TODO Confirm.
+	public boolean update(IPowerReceptor receptor)
+	{
 		return true;
 	}
 
 	
-	public float useEnergy(float min, float max, boolean doUse) {
-		//TODO Confirm.
+	public boolean preConditions(IPowerReceptor receptor)
+	{
+		return true;
+	}
+
+	
+	public float useEnergy(float min, float max, boolean doUse)
+	{
 		return 0;
 	}
 	
-	public void receiveEnergy(float quantity, ForgeDirection from) {
-		//Doesn't do SHIT!
+	public void receiveEnergy(float quantity, ForgeDirection from)
+	{
+		
 	}
 	
-	public boolean isPowerSource(ForgeDirection from) {
+	public boolean isPowerSource(ForgeDirection from)
+	{
 		return true;
 	}
 
-	public SafeTimeTracker getTimeTracker() {
-		// TODO Auto-generated method stub
+	public SafeTimeTracker getTimeTracker()
+	{
 		return null;
+	}
+
+	public boolean isPipeConnected(ForgeDirection with)
+	{
+		return true;
+	}
+
+	public void updateEntity()
+	{
+		TileEntity te = worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
+		if(te != null && te instanceof IPowerReceptor)
+		{
+			if(((IPowerReceptor) te).getPowerProvider() != null)
+			{
+				((IPowerReceptor) te).getPowerProvider().receiveEnergy(powerStrength, ForgeDirection.DOWN);
+				System.out.println("Power: " + powerStrength);
+			}
+		}
+	}
+	
+    public Packet getDescriptionPacket()
+    {
+    	NBTTagCompound tileTag = new NBTTagCompound();
+    	this.writeToNBT(tileTag);
+    	return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tileTag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+    {
+    	this.readFromNBT(pkt.customParam1);
+    }
+	
+	public int produceEnergy(int energy)
+	{
+		return 9001;
+	}
+	
+	public void setPowerProvider(IPowerProvider provider)
+	{
+		this.provider = provider;
+	}
+
+	public IPowerProvider getPowerProvider()
+	{
+		return provider;
+	}
+
+	public void doWork()
+	{
+		
+	}
+
+	public int powerRequest()
+	{
+		return 0;
 	}
 	
 }

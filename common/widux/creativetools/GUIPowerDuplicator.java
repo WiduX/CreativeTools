@@ -1,9 +1,15 @@
 package widux.creativetools;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.network.packet.Packet250CustomPayload;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -14,6 +20,7 @@ public class GUIPowerDuplicator extends GuiScreen
 	private TileEntityPowerDuplicator tePower;
 	private int x, y, z;
 	//private GuiTextBox;
+	private ContainerPowerDuplicator container;
 	
 	public GUIPowerDuplicator(int xCoord, int yCoord, int zCoord, TileEntityPowerDuplicator tileEntity)
 	{
@@ -21,6 +28,7 @@ public class GUIPowerDuplicator extends GuiScreen
 		this.x = xCoord;
 		this.y = yCoord;
 		this.z = zCoord;
+		container = new ContainerPowerDuplicator(null, tePower);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -73,9 +81,11 @@ public class GUIPowerDuplicator extends GuiScreen
 		// Switching tab
 		case 000: // Switch to tab "None"
 			switchTab(0);
+			tePower.setPowerMode(PowerMode.NONE);
 			break;
 		case 100: // Swith to tab "MJ"
 			switchTab(1);
+			tePower.setPowerMode(PowerMode.BUILDCRAFT);
 			break;
 		case 200: // Switch to tab "EU"
 			switchTab(2);
@@ -90,6 +100,7 @@ public class GUIPowerDuplicator extends GuiScreen
 		// On Tab - MJ
 		case 101:
 			this.tePower.setPowerStrength(5); // 5 MJ/t
+			apply();
 			break;
 		case 102:
 			this.tePower.setPowerStrength(10); // 10 MJ/t
@@ -112,6 +123,38 @@ public class GUIPowerDuplicator extends GuiScreen
 		default:
 			System.out.println("[CreativeTools] Button pressed in PowerGUI was invalid. Button: " + button.id);
 		}
+	}
+	
+	private void apply()
+	{
+		int str = tePower.getPowerStrength();
+		int mode = tePower.getPowerMode().toInt();
+		int size = tePower.getPacketSize();
+		
+		ByteArrayOutputStream byteArray = new ByteArrayOutputStream(24);
+		DataOutputStream output = new DataOutputStream(byteArray);
+		try
+		{
+			output.writeInt(str);
+			output.writeInt(mode);
+			output.writeInt(size);
+			output.writeInt(x);
+			output.writeInt(y);
+			output.writeInt(z);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "WiduX-CT-Chn";
+		packet.data = byteArray.toByteArray();
+		packet.length = byteArray.size();
+		EntityClientPlayerMP player = (EntityClientPlayerMP) this.mc.thePlayer;
+		player.sendQueue.addToSendQueue(packet);
+		//PacketDispatcher.sendPacketToServer(packet);
+		System.out.println("PacketSend");
 	}
 	
 	private void selectCurrent()
@@ -158,6 +201,7 @@ public class GUIPowerDuplicator extends GuiScreen
 	
 	public void drawScreen(int i, int j, float f)
 	{
+		this.drawDefaultBackground();
 		this.drawContainerBackground();
 		super.drawScreen(i, j, f);
 	}

@@ -25,7 +25,9 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 @NetworkMod
 (
 	clientSideRequired = true,
-	serverSideRequired = false
+	serverSideRequired = false,
+	channels = {"WiduX-CT-Chn"},
+	packetHandler = PacketHandler.class
 )
 public class CreativeTools
 {
