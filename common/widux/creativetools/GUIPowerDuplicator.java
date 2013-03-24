@@ -13,7 +13,6 @@ public class GUIPowerDuplicator extends GuiScreen
 	
 	private TileEntityPowerDuplicator tePower;
 	private int x, y, z;
-	private int tabSelected;
 	//private GuiTextBox;
 	
 	public GUIPowerDuplicator(int xCoord, int yCoord, int zCoord, TileEntityPowerDuplicator tileEntity)
@@ -22,16 +21,16 @@ public class GUIPowerDuplicator extends GuiScreen
 		this.x = xCoord;
 		this.y = yCoord;
 		this.z = zCoord;
-		this.tabSelected = tePower.getPowerMode().toInt();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
 		this.buttonList.clear();
+		this.drawContainerBackground();
 		
 		// Finish & Close Button
-		this.buttonList.add(new GuiButton(999, 325, 210, 80, 20, "Apply & Close"));
+		this.buttonList.add(new GuiButton(999, 325, 210, 80, 20, "Close"));
 		
 		// Tabs
 		this.buttonList.add(new GuiButton(000, 20, 20, 50, 20, "None"));
@@ -59,6 +58,9 @@ public class GUIPowerDuplicator extends GuiScreen
 		// Tab - Blu. W
 		// Nothing here yet.
 		
+		// Open the GUI with the correct tab selected.
+		selectCurrent();
+		
 	}
 	
 	public void actionPerformed(GuiButton button)
@@ -67,14 +69,19 @@ public class GUIPowerDuplicator extends GuiScreen
 		{
 		// Switching tab
 		case 000: // Switch to tab "None"
+			switchTab(0);
 			break;
 		case 100: // Swith to tab "MJ"
+			switchTab(1);
 			break;
 		case 200: // Switch to tab "EU"
+			switchTab(2);
 			break;
 		case 300: // Switch to tab "UE W"
+			switchTab(3);
 			break;
 		case 400: //Switch to tab "Blu. W"
+			switchTab(4);
 			break;
 		
 		// On Tab - MJ
@@ -104,11 +111,43 @@ public class GUIPowerDuplicator extends GuiScreen
 		}
 	}
 	
+	private void selectCurrent()
+	{
+		switchTab(tePower.getPowerMode().toInt());
+	}
+	
+	private void switchTab(int newTab)
+	{
+		GuiButton button;
+		for(int i = 0; i < this.buttonList.size(); i++)
+		{
+			button = (GuiButton)this.buttonList.get(i);
+			if(button.id != 000 && button.id != 100 && button.id != 200 && button.id != 300 && button.id != 400 && button.id != 999) // Make sure we're not removing an important button.
+			{
+				if((button.id / 100.00F) > (newTab + 0.99F) || (button.id / 100.00F) < (newTab - 0.01F))
+				{
+					button.drawButton = false;
+				}
+				else
+				{
+					button.drawButton = true;
+				}
+			}
+			if(button.id == (newTab * 100))
+			{
+				button.enabled = false;
+			}
+			else
+			{
+				button.enabled = true;
+			}
+		}
+	}
+	
 	private void drawContainerBackground()
 	{
-		//int i = mc.renderEngine.getTexture("/codechicken/wirelessredstone/core/guiWirelessLarge.png");
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture("/codechicken/wirelessredstone/core/guiWirelessLarge.png");
+		mc.renderEngine.bindTexture("/mods/" + ModInfo.INTERNAL_NAME + "/textures/gui/PowerDuplicator.png");
 		int posx = width / 2 - 118;
 		int posy = height / 2 - 106;
 		drawTexturedModalRect(posx, posy, 0, 0, 237, 190);
