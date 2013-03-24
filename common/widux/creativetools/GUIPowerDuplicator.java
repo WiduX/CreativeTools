@@ -27,27 +27,26 @@ public class GUIPowerDuplicator extends GuiScreen
 	public void initGui()
 	{
 		this.buttonList.clear();
-		this.drawContainerBackground();
 		
 		// Finish & Close Button
-		this.buttonList.add(new GuiButton(999, 325, 210, 80, 20, "Close"));
+		this.buttonList.add(new GuiButton(999, width / 2 + 56, height / 2 + 86, 60, 20, "Close"));
 		
 		// Tabs
-		this.buttonList.add(new GuiButton(000, 20, 20, 50, 20, "None"));
-		this.buttonList.add(new GuiButton(100, 90, 20, 50, 20, "MJ"));
-		this.buttonList.add(new GuiButton(200, 160, 20, 50, 20, "EU"));
-		this.buttonList.add(new GuiButton(300, 230, 20, 50, 20, "UE W"));
-		this.buttonList.add(new GuiButton(400, 300, 20, 50, 20, "Blu. W"));
+		this.buttonList.add(new GuiButton(000, width / 2 - 116, height / 2 - 106, 40, 20, "None"));
+		this.buttonList.add(new GuiButton(100, width / 2 - 68, height / 2 - 106, 40, 20, "MJ"));
+		this.buttonList.add(new GuiButton(200, width / 2 - 20, height / 2 - 106, 40, 20, "EU"));
+		this.buttonList.add(new GuiButton(300, width / 2 + 28, height / 2 - 106, 40, 20, "UE W"));
+		this.buttonList.add(new GuiButton(400, width / 2 + 76, height / 2 - 106, 40, 20, "Blu. W"));
 		
 		// Tab - None
 		// Nothing here.
 		
 		// Tab - MJ
-		this.buttonList.add(new GuiButton(101, 195, 80, 50, 20, "5 MJ/t"));
-		this.buttonList.add(new GuiButton(102, 195, 105, 50, 20, "10 MJ/t"));
-		this.buttonList.add(new GuiButton(103, 195, 130, 50, 20, "25 MJ/t"));
-		this.buttonList.add(new GuiButton(104, 195, 155, 50, 20, "50 MJ/t"));
-		this.buttonList.add(new GuiButton(105, 195, 180, 50, 20, "100 MJ/t"));
+		this.buttonList.add(new GuiButton(101, width / 2 + 56, height / 2 - 66, 60, 20, "5 MJ/t"));
+		this.buttonList.add(new GuiButton(102, width / 2 + 56, height / 2 - 38, 60, 20, "10 MJ/t"));
+		this.buttonList.add(new GuiButton(103, width / 2 + 56, height / 2 - 10, 60, 20, "25 MJ/t"));
+		this.buttonList.add(new GuiButton(104, width / 2 + 56, height / 2 + 18, 60, 20, "50 MJ/t"));
+		this.buttonList.add(new GuiButton(105, width / 2 + 56, height / 2 + 46, 60, 20, "100 MJ/t"));
 		
 		// Tab - EU
 		// Nothing here yet.
@@ -148,14 +147,14 @@ public class GUIPowerDuplicator extends GuiScreen
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture("/mods/" + ModInfo.INTERNAL_NAME + "/textures/gui/PowerDuplicator.png");
-		int posx = width / 2 - 118;
-		int posy = height / 2 - 106;
-		drawTexturedModalRect(posx, posy, 0, 0, 237, 190);
+		int posx = width / 2 - 128;
+		int posy = height / 2 - 118;
+		drawTexturedModalRect(posx, posy, 0, 0, 256, 236);
 	}
 	
 	public void drawScreen(int i, int j, float f)
 	{
-		//this.drawContainerBackground();
+		this.drawContainerBackground();
 		super.drawScreen(i, j, f);
 	}
 	
