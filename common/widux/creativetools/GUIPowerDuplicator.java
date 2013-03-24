@@ -31,7 +31,7 @@ public class GUIPowerDuplicator extends GuiScreen
 		this.buttonList.clear();
 		
 		// Finish & Close Button
-		this.buttonList.add(new GuiButton(999, 90, 20, 50, 20, "Apply"));
+		this.buttonList.add(new GuiButton(999, 325, 210, 80, 20, "Apply & Close"));
 		
 		// Tabs
 		this.buttonList.add(new GuiButton(000, 20, 20, 50, 20, "None"));
@@ -41,14 +41,23 @@ public class GUIPowerDuplicator extends GuiScreen
 		this.buttonList.add(new GuiButton(400, 300, 20, 50, 20, "Blu. W"));
 		
 		// Tab - None
-		//Nothing here.
+		// Nothing here.
 		
 		// Tab - MJ
-		this.buttonList.add(new GuiButton(101, 90, 20, 50, 20, "5 MJ/t"));
-		this.buttonList.add(new GuiButton(102, 90, 20, 50, 20, "10 MJ/t"));
-		this.buttonList.add(new GuiButton(103, 90, 20, 50, 20, "25 MJ/t"));
-		this.buttonList.add(new GuiButton(104, 90, 20, 50, 20, "50 MJ/t"));
-		this.buttonList.add(new GuiButton(105, 90, 20, 50, 20, "100 MJ/t"));
+		this.buttonList.add(new GuiButton(101, 195, 80, 50, 20, "5 MJ/t"));
+		this.buttonList.add(new GuiButton(102, 195, 105, 50, 20, "10 MJ/t"));
+		this.buttonList.add(new GuiButton(103, 195, 130, 50, 20, "25 MJ/t"));
+		this.buttonList.add(new GuiButton(104, 195, 155, 50, 20, "50 MJ/t"));
+		this.buttonList.add(new GuiButton(105, 195, 180, 50, 20, "100 MJ/t"));
+		
+		// Tab - EU
+		// Nothing here yet.
+		
+		// Tab - UE W
+		// Nothing here yet.
+		
+		// Tab - Blu. W
+		// Nothing here yet.
 		
 	}
 	
@@ -56,6 +65,7 @@ public class GUIPowerDuplicator extends GuiScreen
 	{
 		switch(button.id)
 		{
+		// Switching tab
 		case 000: // Switch to tab "None"
 			break;
 		case 100: // Swith to tab "MJ"
@@ -66,6 +76,25 @@ public class GUIPowerDuplicator extends GuiScreen
 			break;
 		case 400: //Switch to tab "Blu. W"
 			break;
+		
+		// On Tab - MJ
+		case 101:
+			this.tePower.setPowerStrength(5); // 5 MJ/t
+			break;
+		case 102:
+			this.tePower.setPowerStrength(10); // 10 MJ/t
+			break;
+		case 103:
+			this.tePower.setPowerStrength(25); // 25 MJ/t
+			break;
+		case 104:
+			this.tePower.setPowerStrength(50); // 50 MJ/t
+			break;
+		case 105:
+			this.tePower.setPowerStrength(100); // 100 MJ/t
+			break;
+			
+		// Others
 		case 999: // Finish & Close
             mc.displayGuiScreen(null);
             mc.setIngameFocus();
