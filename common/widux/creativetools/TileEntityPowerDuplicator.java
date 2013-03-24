@@ -77,67 +77,65 @@ public class TileEntityPowerDuplicator extends TileEntity implements IPowerProvi
 
 	
 	public int getLatency() {
-		// TODO Auto-generated method stub
+		//TODO DaFUQ!
 		return 0;
 	}
 
 	
 	public int getMinEnergyReceived() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	
 	public int getMaxEnergyReceived() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	
 	public int getMaxEnergyStored() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Integer.MAX_VALUE;
 	}
 
 	
 	public int getActivationEnergy() {
-		// TODO Auto-generated method stub
+		//TODO Confirm.
 		return 0;
 	}
 
 	
 	public float getEnergyStored() {
-		// TODO Auto-generated method stub
-		return 0;
+		//TODO Confirm.
+		return this.powerStrength;
 	}
 
 	
 	public void configure(int latency, int minEnergyReceived,
 			int maxEnergyReceived, int minActivationEnergy, int maxStoredEnergy) {
-		// TODO Auto-generated method stub
+		//TODO Confirm.
 		
 	}
 
 	
 	public void configurePowerPerdition(int powerLoss, int powerLossRegularity) {
-		// TODO Auto-generated method stub
+		//TODO Confirm.
 		
 	}
 
 	
 	public boolean update(IPowerReceptor receptor) {
-		// TODO Auto-generated method stub
+		//TODO Confirm.
 		return false;
 	}
 
 	
 	public boolean preConditions(IPowerReceptor receptor) {
+		//TODO Confirm.
 		return true;
 	}
 
 	
 	public float useEnergy(float min, float max, boolean doUse) {
-		//K.
+		//TODO Confirm.
 		return 0;
 	}
 	
