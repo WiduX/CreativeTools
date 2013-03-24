@@ -66,7 +66,7 @@ public class BlockCreative extends BlockContainer
     }
 	
 	@SideOnly(Side.CLIENT)
-    public void func_94332_a(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
         this.textures = new Icon[3][6];
 
