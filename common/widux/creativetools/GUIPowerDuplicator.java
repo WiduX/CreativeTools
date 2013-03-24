@@ -49,7 +49,11 @@ public class GUIPowerDuplicator extends GuiScreen
 		this.buttonList.add(new GuiButton(105, width / 2 + 56, height / 2 + 46, 60, 20, "100 MJ/t"));
 		
 		// Tab - EU
-		// Nothing here yet.
+		this.buttonList.add(new GuiButton(201, width / 2 + 56, height / 2 - 66, 60, 20, "5 EU/t"));
+		this.buttonList.add(new GuiButton(202, width / 2 + 56, height / 2 - 38, 60, 20, "32 EU/t"));
+		this.buttonList.add(new GuiButton(203, width / 2 + 56, height / 2 - 10, 60, 20, "128 EU/t"));
+		this.buttonList.add(new GuiButton(204, width / 2 + 56, height / 2 + 18, 60, 20, "512 EU/t"));
+		this.buttonList.add(new GuiButton(205, width / 2 + 56, height / 2 + 46, 60, 20, "2048 EU/t"));
 		
 		// Tab - UE W
 		// Nothing here yet.
