@@ -220,5 +220,12 @@ public class TileEntityPowerDuplicator extends TileEntity implements IPowerProvi
 	{
 		return 0;
 	}
+
+	@Override
+	public int powerRequest(ForgeDirection from)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
