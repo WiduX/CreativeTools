@@ -1,7 +1,5 @@
 package widux.creativetools;
 
-import java.util.Map.Entry;
-
 import buildcraft.api.core.SafeTimeTracker;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;

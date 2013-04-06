@@ -63,7 +63,8 @@ public class TileEntityLiquidDuplicator extends TileEntity implements IInventory
 		
 	}
 	
-	public void readFromNBT(NBTTagCompound nbt)
+	@SuppressWarnings("static-access")
+    public void readFromNBT(NBTTagCompound nbt)
 	{
 		super.readFromNBT(nbt);
 		
@@ -78,7 +79,7 @@ public class TileEntityLiquidDuplicator extends TileEntity implements IInventory
 		else
 		{
 			LiquidStack liquid = new LiquidStack(0, 0, 0);
-			liquid.readFromNBT(nbt.getCompoundTag("Liquid"));
+			liquid.loadLiquidStackFromNBT(nbt.getCompoundTag("Liquid"));
 			if (Item.itemsList[liquid.itemID] != null && liquid.amount > 0)
 			{
 				outputTank.setLiquid(liquid);

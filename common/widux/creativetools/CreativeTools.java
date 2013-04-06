@@ -67,6 +67,6 @@ public class CreativeTools
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		config.save();
-		NetworkRegistry.instance().registerGuiHandler(this.instance, new GUIManager());
+		NetworkRegistry.instance().registerGuiHandler(instance, new GUIManager());
 	}
 }

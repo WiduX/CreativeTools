@@ -9,7 +9,6 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +19,8 @@ public class GUIPowerDuplicator extends GuiScreen
 	private TileEntityPowerDuplicator tePower;
 	private int x, y, z;
 	//private GuiTextBox;
-	private ContainerPowerDuplicator container;
+	@SuppressWarnings("unused")
+    private ContainerPowerDuplicator container;
 	
 	public GUIPowerDuplicator(int xCoord, int yCoord, int zCoord, TileEntityPowerDuplicator tileEntity)
 	{
